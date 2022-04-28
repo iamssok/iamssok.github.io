@@ -13,7 +13,7 @@
         body {background:#111;}
         li {list-style:none;}
 
-        .w_83 {width:83%; margin:0 auto;}
+        .w_98 {width:98%; margin:0 auto;}
         .btn_watch {display:inline-block; width:120px; height:34px; background:#d4280e; font-size:14px; color:#fff; text-align:center; line-height:34px; text-decoration:none; clear:both;}
         .btn_more {display:inline-block; position:relative; top:-4px; width:34px; height:34px; border:1px solid #d4280e; text-align:center;}
         .btn_more img {width:15px !important; margin-top:4px; vertical-align:middle;}        
@@ -31,8 +31,9 @@
         .mySwiper .swiper-slide-thumb-active {opacity:1;}
         .swiper-slide img {width:100%;}
 
-        .section {position:relative; width:100%; height:500px;}
-        .section .secTitle {margin-bottom:20px; font-weight:400; font-size:20px; color:#fff;}
+        .section {position:relative; width:100%; height:500px; overflow:hidden;}
+        .section .secTitle {margin:0 0 20px 30px; font-weight:400; font-size:20px; color:#fff;}
+        .mySwiper3 {padding-left:30px;}
 
         
 
@@ -134,7 +135,7 @@
         </div>
     </div>
     <div class="section">
-        <p class="secTitle w_83">Nexflex Original</p>
+        <p class="secTitle">Nexflex Original</p>
         <div class="swiper mySwiper3">
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><a href="javascript:;"><img src="./images/poster01.jpg" alt=""></a></div>
@@ -149,6 +150,12 @@
                 <div class="swiper-slide"><a href="javascript:;"><img src="./images/poster10.jpg" alt=""></a></div>
                 <div class="swiper-slide"><a href="javascript:;"><img src="./images/poster11.jpg" alt=""></a></div>
                 <div class="swiper-slide"><a href="javascript:;"><img src="./images/poster12.jpg" alt=""></a></div>
+                <div class="swiper-slide"><a href="javascript:;"><img src="./images/poster13.jpg" alt=""></a></div>
+                <div class="swiper-slide"><a href="javascript:;"><img src="./images/poster14.jpg" alt=""></a></div>
+                <div class="swiper-slide"><a href="javascript:;"><img src="./images/poster15.jpg" alt=""></a></div>
+                <div class="swiper-slide"><a href="javascript:;"><img src="./images/poster16.jpg" alt=""></a></div>
+                <div class="swiper-slide"><a href="javascript:;"><img src="./images/poster17.jpg" alt=""></a></div>
+                <div class="swiper-slide"><a href="javascript:;"><img src="./images/poster18.jpg" alt=""></a></div>
             </div>
         </div>
     </div>
@@ -178,14 +185,19 @@
         });
         var swiper3 = new Swiper(".mySwiper3", {
             spaceBetween: 15,
-            slidesPerView: 6,
-            centeredSlides: true,
-            loop: true,
-            autoplay: {
-                delay: 4000,
-                disableOnInteraction: false,
+            slidesPerView: 7,
+            freeMode: true,            
+            breakpoints: {
+                480: {
+                    slidesPerView: 4,
+                    spaceBetween: 10,
+                },
+                1200: {
+                    slidesPerView: 7,
+                    spaceBetween: 15,
+                },
             },
-      });
+        });
     </script>
 </body>
 </html>
