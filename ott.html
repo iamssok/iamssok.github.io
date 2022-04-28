@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <title>OTT</title>
+    <style>
+        * {margin:0; padding:0; box-sizing:border-box; font-family:'Open Sans', sans-serif;}
+        body {background:#111;}
+        li {list-style:none;}
+        .visual_main {position:relative; width:100%;}
+        .visual_main .gradient {position:absolute; top:0; left:0; width:100%; height:800px; background:linear-gradient(transparent, #111);}
+        .mySwiper2 {width:100%; height:800px; overflow:hidden;}
+        .mySwiper2 .titleBox {position:absolute; bottom:260px; left:50%; z-index:11; width:1200px; margin-left:-600px;}
+        .mySwiper2 .titleBox p {font-weight:100; font-size:15px; color:#fff;}
+        .mySwiper2 .titleBox h1.title {margin-top:-3px; font-weight:700; font-size:46px; color:#fff;}
+        .mySwiper2 .titleBox ul.cateBox {display:inline-block; margin:10px 0 24px;}
+        .mySwiper2 .titleBox ul.cateBox li {float:left; min-width:50px; height:20px; margin-right:3px; padding:0 10px; background:rgba(245,245,245,.1); border:1px solid rgba(245,245,245,.3); font-weight:300; font-size:11px; color:#ddd; text-align:center; line-height:20px;}
+        .btn_watch {display:inline-block; width:120px; height:34px; background:#d4280e; font-size:14px; color:#fff; text-align:center; line-height:34px; text-decoration:none; clear:both;}
+        .btn_more {display:inline-block; position:relative; top:-4px; width:34px; height:34px; border:1px solid #d4280e; text-align:center;}
+        .btn_more img {margin-top:4px; vertical-align:middle;}        
+        
+        .mySwiper {position:absolute; bottom:-100px; left:50%; margin-left:-400px; z-index:10; width:800px;}
+        .mySwiper .swiper-slide {width:25%; height:100%; opacity:0.4;}
+        .mySwiper .swiper-slide-thumb-active {opacity:1;}
+        .mySwiper .swiper-slide img {width:100%;}
+
+        .block1 {width:100%; height:2000px;}
+    </style>
+</head>
+<body>
+    <div class="visual_main">
+        <div class="swiper mySwiper2">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="titleBox">  
+                        <p>Nov, 6, 2014</p>                    
+                        <h1 class="title">LA CASA DE PAPEL</h1>
+                        <ul class="cateBox">
+                            <li>Crime</li>
+                            <li>Thriller</li>
+                            <li>Spanish</li>
+                            <li>Part5</li>
+                        </ul>
+                        <div class="btn_wrap">
+                            <a href="javascript:;" class="btn_watch">Watch</a>
+                            <a href="javascript:;" class="btn_more"><img src="./images/more.png" /></a>
+                        </div>
+                    </div>
+                    <div class="gradient"></div>
+                    <img src="./images/mainImg_01.jpg" />
+                </div>
+                <div class="swiper-slide">
+                    <div class="titleBox">  
+                        <p>Mar, 8, 2002</p>                    
+                        <h1 class="title">Breaking Bad</h1>
+                        <ul class="cateBox">
+                            <li>Crime</li>
+                            <li>Thriller</li>
+                            <li>Part5</li>
+                        </ul>
+                        <div class="btn_wrap">
+                            <a href="javascript:;" class="btn_watch">Watch</a>
+                            <a href="javascript:;" class="btn_more"><img src="./images/more.png" /></a>
+                        </div>
+                    </div>
+                    <div class="gradient"></div>
+                    <img src="./images/mainImg_02.jpg" />
+                </div>
+                <div class="swiper-slide">
+                    <div class="titleBox">  
+                        <p>Dec, 12, 2020</p>                    
+                        <h1 class="title">Kingdom</h1>
+                        <ul class="cateBox">
+                            <li>Horror</li>
+                            <li>Thriller</li>
+                            <li>Korea</li>
+                        </ul>
+                        <div class="btn_wrap">
+                            <a href="javascript:;" class="btn_watch">Watch</a>
+                            <a href="javascript:;" class="btn_more"><img src="./images/more.png" /></a>
+                        </div>
+                    </div>
+                    <div class="gradient"></div>
+                    <img src="./images/mainImg_03.jpg" />
+                </div>
+                <div class="swiper-slide">
+                    <div class="titleBox">  
+                        <p>Aug, 23, 2019</p>                    
+                        <h1 class="title">Stranger Things</h1>
+                        <ul class="cateBox">
+                            <li>Horror</li>
+                            <li>Thriller</li>
+                            <li>part3</li>
+                        </ul>
+                        <div class="btn_wrap">
+                            <a href="javascript:;" class="btn_watch">Watch</a>
+                            <a href="javascript:;" class="btn_more"><img src="./images/more.png" /></a>
+                        </div>
+                    </div>
+                    <div class="gradient"></div>
+                    <img src="./images/mainImg_04.jpg" />
+                </div>
+            </div>
+        </div>
+        <div thumbsSlider="" class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="./images/thumb_01.jpg" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="./images/thumb_02.jpg" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="./images/thumb_03.jpg" />
+                </div>
+                <div class="swiper-slide">
+                    <img src="./images/thumb_04.jpg" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block1">
+
+    </div>
+
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            spaceBetween: 10,
+            slidesPerView: 4,
+            freeMode: true,
+            watchSlidesProgress: true,
+        });
+        var swiper2 = new Swiper(".mySwiper2", {
+            effect : 'fade',
+            speed : 1600,
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            thumbs: {
+            swiper: swiper,
+            },
+        });
+    </script>
+</body>
+</html>
