@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <style>
+        * {margin:0; padding:0; box-sizing:border-box;}
+        .wrap {display:flex; flex-wrap:wrap; position:relative; width:100%;}
+        .wrap .ani_box {position:relative; width:20%; height:400px; background:#111; overflow:hidden;}
+        .wrap .ani_box .inner {position:relative; width:350px; height:320px; margin:0 auto; border-radius:0 0 300px 300px; overflow:hidden;}
+        .wrap .ani_box .inner.back {background:#000;}
+        .wrap .ani_box .inner.mercury {background:url('./images/back_milkyway.jpg') right bottom;}
+        .wrap .ani_box .inner.earth {background:url('./images/back_black.jpg');}
+        .wrap .ani_box .inner.moon {background:url('./images/back_blue.jpg');}
+        .wrap .ani_box .inner.mars {background:url('./images/back_color.jpg');}
+        .wrap .ani_box .inner.venus {background:url('./images/back_red.jpg');}
+        .wrap .ani_box .inner img {width:200px;}
+        .wrap .ani_box .ani_btn {display:inline-block; position:absolute; bottom:30px; left:50%; transform:translateX(-50%); width:150px; height:34px; background:#222; border-radius:100px; color:#fff; text-align:center; line-height:34px; text-decoration:none; box-shadow:5px 5px 15px rgb(0 0 0 / 60%);}        
+        .abs_cnt {position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);}
+        .margin_cnt {position:absolute; top:50%; left:50%; margin:-100px 0 0 -100px;}
+
+
+        /**
+        * Fade animations:
+        * fade, fade-up, fade-down, fade-left, fade-right
+        */
+        .fade.on {animation:fade 1s forwards;}
+        .fade-up.on {animation:fade-up .5s forwards;}
+        .fade-down.on {animation:fade-down .5s forwards;}
+        .fade-left.on {animation:fade-left .5s forwards;}
+        .fade-right.on {animation:fade-right .5s forwards;}
+
+        @keyframes fade {
+            from {opacity:0;}
+            to   {opacity:1;}
+        }
+
+        @keyframes fade-up {
+            from {opacity:0; top:150%;}
+            to   {opacity:1; top:50%;}
+        }
+
+        @keyframes fade-down {
+            from {opacity:0; top:-150%;}
+            to   {opacity:1; top:50%;}
+        }
+
+        @keyframes fade-left {
+            from {opacity:0; left:150%;}
+            to   {opacity:1; left:50%;}
+        }
+
+        @keyframes fade-right {
+            from {opacity:0; left:-150%;}
+            to   {opacity:1; left:50%;}
+        }
+
+
+        /**
+        * Animations:
+        * zoom-in, slide-up, slide-down, slide-left, slide-right, 
+        * bounce-in, expand-open, bounce, pull-up, pull-down, 
+        * heartbeat, floating, tossing, blink, circle
+        */        
+
+        .zoom-in.on {animation:zoom-in .6s ease-in-out;}
+        .slide-up.on {animation:slide-up 1s ease-in-out;}
+        .slide-down.on {animation:slide-down 1s ease-in-out;}
+        .slide-left.on {animation:slide-left 1s ease-in-out;}
+        .slide-right.on {animation:slide-right 1s ease-in-out;}
+
+        @keyframes zoom-in {
+            0%   {transform:scale(0); opacity:0;}
+            60%  {transform:scale(1.1);}
+            80%  {transform:scale(0.9); opacity:1;}
+            100% {transform:scale(1);}
+        }
+
+        @keyframes slide-up {
+            0%   {transform:translateY(100%);}
+            50%  {transform:translateY(-8%);}
+            65%  {transform:translateY(4%);}
+            80%  {transform:translateY(-4%);}
+            95%  {transform:translateY(2%);}
+            100% {transform:translateY(0%);}
+        }
+
+        @keyframes slide-down {
+            0%   {transform:translateY(-100%);}
+            50%  {transform:translateY(8%);}
+            65%  {transform:translateY(-4%);}
+            80%  {transform:translateY(4%);}
+            95%  {transform:translateY(-2%);}
+            100% {transform:translateY(0%);}
+        }
+
+        @keyframes slide-left {
+            0%   {transform:translateX(150%);}
+            50%  {transform:translateX(-8%);}
+            65%  {transform:translateX(4%);}
+            80%  {transform:translateX(-4%);}
+            95%  {transform:translateX(2%);}
+            100% {transform:translateX(0%);}
+        }
+
+        @keyframes slide-right {
+            0%   {transform:translateX(-150%);}
+            50%  {transform:translateX(8%);}
+            65%  {transform:translateX(-4%);}
+            80%  {transform:translateX(4%);}
+            95%  {transform:translateX(-2%);}
+            100% {transform:translateX(0%);}
+        }
+
+
+        .bounce-in.on {transition-timing-function:cubic-bezier(0.215, 0.61, 0.355, 1); animation:bounce-in .6s forwards;}
+        .expand-open.on {animation:expand-open .6s ease-out;}
+        .bounce.on {transform-origin:50% 0%; animation:bounce 1s ease;}
+        .pull-up.on {transform-origin:50% 100%; animation:pull-up 1s ease-out;}
+        .pull-down.on {transform-origin:50% 0%; animation:pull-down 1s ease-out;}
+
+        @keyframes bounce-in {
+            0%   {transform:scale(0.3); opacity:0;}
+            20%  {transform:scale(1.3);}
+            40%  {transform:scale(0.9);}
+            60%  {transform:scale(1.03); opacity:1;}
+            80%  {transform:scale(0.97);}
+            100% {transform:scale(1);}
+        }
+
+        @keyframes expand-open {
+            0%   {transform:scale(1.8);}
+            50%  {transform:scale(0.95);}
+            80%  {transform:scale(1.05);}
+            100% {transform:scale(0.98);}
+            80%  {transform:scale(1.01);}
+            100% {transform:scale(1);}
+        }
+
+        @keyframes bounce {
+            0%   {transform:translateY(0%) scaleY(0.6);}
+            60%  {transform:translateY(-100%) scaleY(1.1);}
+            70%  {transform:translateY(0%) scaleY(0.95) scaleX(1.05);}
+            80%  {transform:translateY(0%) scaleY(1.05) scaleX(1);}
+            90%  {transform:translateY(0%) scaleY(0.95) scaleX(1);}
+            100% {transform:translateY(0%) scaleY(1) scaleX(1);}
+        }
+
+        @keyframes pull-up {
+            0%   {transform:scaleY(0.1);}
+            40%  {transform:scaleY(1.02);}
+            60%  {transform:scaleY(0.98);}
+            80%  {transform:scaleY(1.01);}
+            100% {transform:scaleY(0.98);}
+            80%  {transform:scaleY(1.01);}
+            100% {transform:scaleY(1);}
+        }
+
+        @keyframes pull-down {
+            0%   {transform:scaleY(0.1);}
+            40%  {transform:scaleY(1.02);}
+            60%  {transform:scaleY(0.98);}
+            80%  {transform:scaleY(1.01);}
+            100% {transform:scaleY(0.98);}
+            80%  {transform:scaleY(1.01);}
+            100% {transform:scaleY(1);}
+        }
+
+
+        .heartbeat {animation:heartbeat 1s infinite;}
+        .floating {animation:floating 2.5s infinite;}
+        .tossing {animation:tossing 2.5s infinite;}
+        .blink {width:200px; height:200px; animation:blink .8s infinite;}
+        .circle {width:200px; height:200px; animation:circle 10s linear infinite;}
+
+        @keyframes heartbeat {
+            0%  {transform:scale(1);}
+            14% {transform:scale(1.3);}
+            28% {transform:scale(1);}
+            42% {transform:scale(1.3);}
+            70%	{transform:scale(1);}
+        }
+
+        @keyframes floating {
+            0%,100% {transform:translateY(0%);}
+            50%     {transform:translateY(5%);}
+        }
+
+        @keyframes tossing {
+            0%,100% {transform:rotate(-4deg);}
+            50%     {transform:rotate(4deg);}
+        }        
+
+        @keyframes blink {
+            0%,100% {background-image:url('images/emo_smile.png'); background-size:200px 200px;}
+            50%     {background:none;}
+        }
+
+        @keyframes circle { 100% {transform:translate(-50%, -50%) rotate(360deg);} }
+
+
+        
+        /**
+        * Hover animations:
+        * grow, float, sink, pulse, wobbleH, wobbleV
+        */
+        .grow { position:absolute; top:50%; left:50%; width:180px; height:44px; margin:-22px 0 0 -90px; background:#ddd; color:#333; text-align:center; line-height:44px; cursor:pointer; transform:perspective(1px) translateZ(0); transition:all .3s; }
+        .grow:hover, .grow:focus, .grow:active { transform:scale(1.1); }
+
+        .float { position:absolute; top:50%; left:50%; width:180px; height:44px; margin:-22px 0 0 -90px; background:#ddd; color:#333; text-align:center; line-height:44px; cursor:pointer; transform:perspective(1px) translateZ(0); transition:all .3s; }
+        .float:hover, .float:focus, .float:active { transform:translateY(-8px); }
+
+        .sink { position:absolute; top:50%; left:50%; width:180px; height:44px; margin:-22px 0 0 -90px; background:#ddd; color:#333; text-align:center; line-height:44px; cursor:pointer; transform:perspective(1px) translateZ(0); transition:all .3s; }
+        .sink:hover, .sink:focus, .sink:active { transform:translateY(8px); }
+
+        .pulse { position:absolute; top:50%; left:50%; width:180px; height:44px; margin:-22px 0 0 -90px; background:#ddd; color:#333; text-align:center; line-height:44px; cursor:pointer; transform:perspective(1px) translateZ(0); }
+        .pulse:hover, .pulse:focus, .pulse:active { animation:pulse 1s linear infinite; }
+        @keyframes pulse {
+            25% { transform:scale(1.1); }
+            75% { transform:scale(0.9); }
+        }
+
+        .wobbleH { position:absolute; top:50%; left:50%; width:180px; height:44px; margin:-22px 0 0 -90px; background:#ddd; color:#333; text-align:center; line-height:44px; cursor:pointer; transform:perspective(1px) translateZ(0); }
+        .wobbleH:hover, .wobbleH:focus, .wobbleH:active { animation:wobbleH .7s ease-in-out 1; }
+        @keyframes wobbleH {
+            16.65% { transform:translateX(6px); }
+            33.3%  { transform:translateX(-5px); }
+            49.95% { transform:translateX(4px); }
+            66.6%  { transform:translateX(-2px); }
+            83.25% { transform:translateX(1px); }
+            100%   { transform:translateX(0); }
+        }
+
+        .wobbleV { position:absolute; top:50%; left:50%; width:180px; height:44px; margin:-22px 0 0 -90px; background:#ddd; color:#333; text-align:center; line-height:44px; cursor:pointer; transform:perspective(1px) translateZ(0); }
+        .wobbleV:hover, .wobbleV:focus, .wobbleV:active { animation:wobbleV .8s ease-in-out 1; }
+        @keyframes wobbleV {
+            16.65% { transform:translateY(6px); }
+            33.3%  { transform:translateY(-5px); }
+            49.95% { transform:translateY(4px); }
+            66.6%  { transform:translateY(-2px); }
+            83.25% { transform:translateY(1px); }
+            100%   { transform:translateY(0); }
+        }
+
+
+        /**
+        * Icon animations:
+        * icon-forward, icon-wobbleH
+        */
+        .icon-forward { position:absolute; top:50%; left:50%; width:180px; height:44px; margin:-22px 0 0 -90px; background:#ddd; color:#333; text-align:center; line-height:44px; cursor:pointer; transform:perspective(1px) translateZ(0); transition:all 0.1s; }
+        .icon-forward .icon-arrow { transform:translateZ(0); transition:all 0.1s; padding-left:4px; vertical-align:middle; display:inline-block; }
+        .icon-forward:hover .icon-arrow, .icon-forward:focus .icon-arrow, .icon-forward:active .icon-arrow { transform:translateX(4px); }
+
+        .icon-wobbleH { position:absolute; top:50%; left:50%; width:180px; height:44px; margin:-22px 0 0 -90px; background:#ddd; color:#333; text-align:center; line-height:44px; cursor:pointer; transform:perspective(1px) translateZ(0); }
+        .icon-wobbleH .icon-arrow { transform:translateZ(0); padding-left:4px; vertical-align:middle; display:inline-block; }
+        .icon-wobbleH:hover .icon-arrow, .icon-wobbleH:focus .icon-arrow, .icon-wobbleH:active .icon-arrow { animation:icon-wobbleH 1s ease-in-out 1; }
+        @keyframes icon-wobbleH {
+            16.65% { transform:translateX(5px); }
+            33.3%  { transform:translateX(-4px); }
+            49.95% { transform:translateX(3px); }
+            66.6%  { transform:translateX(-2px); }
+            83.25% { transform:translateX(1px); }
+            100%   { transform:translateX(0); }
+        }
+
+
+        /**
+        * Shadow animations:
+        * shadow, grow-shadow, float-shadow
+        */
+        .shadow { position:absolute; top:50%; left:50%; width:180px; height:44px; margin:-22px 0 0 -90px; background:#ddd; color:#333; text-align:center; line-height:44px; cursor:pointer; transform:perspective(1px) translateZ(0); transition:all .3s; }
+        .shadow:hover, .shadow:focus, .shadow:active { box-shadow:0 10px 10px -10px rgba(0, 0, 0, 0.5); }
+
+        .grow-shadow { position:absolute; top:50%; left:50%; width:180px; height:44px; margin:-22px 0 0 -90px; background:#ddd; color:#333; text-align:center; line-height:44px; cursor:pointer; transform:perspective(1px) translateZ(0); transition:all .3s; }
+        .grow-shadow:hover, .grow-shadow:focus, .grow-shadow:active { transform:scale(1.1); box-shadow:0 10px 10px -10px rgba(0, 0, 0, 0.5); }
+
+        .float-shadow { position:absolute; top:50%; left:50%; width:180px; height:44px; margin:-22px 0 0 -90px; background:#ddd; color:#333; text-align:center; line-height:44px; cursor:pointer; transform:perspective(1px) translateZ(0); transition:all .3s; }
+        .float-shadow:before { pointer-events:none; position:absolute; z-index:-1; content:''; top:100%; left:5%; height:10px; width:90%; opacity:0; background:radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%); transition:all .3s; }
+        .float-shadow:hover, .float-shadow:focus, .float-shadow:active { transform:translateY(-5px); }
+        .float-shadow:hover:before, .float-shadow:focus:before, .float-shadow:active:before { transform:translateY(5px); opacity:1; }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <!-- // Fade Animations -->
+        <div class="ani_box">
+            <div class="inner mercury"><img src="images/mercury.png" class="abs_cnt fade"></div>
+            <a href="javascript:;" class="ani_btn">fade</a>
+        </div>
+        <div class="ani_box">
+            <div class="inner earth"><img src="images/earth.png" class="abs_cnt fade-up"></div>
+            <a href="javascript:;" class="ani_btn">fade-up</a>
+        </div>
+        <div class="ani_box">
+            <div class="inner moon"><img src="images/moon.png" class="abs_cnt fade-down"></div>
+            <a href="javascript:;" class="ani_btn">fade-down</a>
+        </div>
+        <div class="ani_box">
+            <div class="inner mars"><img src="images/mars.png" class="abs_cnt fade-left"></div>
+            <a href="javascript:;" class="ani_btn">fade-left</a>
+        </div>
+        <div class="ani_box">
+            <div class="inner venus"><img src="images/venus.png" class="abs_cnt fade-right"></div>
+            <a href="javascript:;" class="ani_btn">fade-right</a>
+        </div>
+
+
+        <!-- // Animations -->
+        <div class="ani_box">
+            <div class="inner back"><img src="images/emo_smile.png" class="margin_cnt zoom-in"></div>
+            <a href="javascript:;" class="ani_btn">zoom-in</a>
+        </div>
+        <div class="ani_box">
+            <div class="inner back"><img src="images/emo_smile.png" class="margin_cnt slide-up"></div>
+            <a href="javascript:;" class="ani_btn">slide-up</a>
+        </div>
+        <div class="ani_box">
+            <div class="inner back"><img src="images/emo_smile.png" class="margin_cnt slide-down"></div>
+            <a href="javascript:;" class="ani_btn">slide-down</a>
+        </div>
+        <div class="ani_box">
+            <div class="inner back"><img src="images/emo_smile.png" class="margin_cnt slide-left"></div>
+            <a href="javascript:;" class="ani_btn">slide-left</a>
+        </div>
+        <div class="ani_box">
+            <div class="inner back"><img src="images/emo_smile.png" class="margin_cnt slide-right"></div>
+            <a href="javascript:;" class="ani_btn">slide-right</a>
+        </div>
+
+
+        <div class="ani_box">
+            <div class="inner back"><img src="images/emo_smile.png" class="margin_cnt bounce-in"></div>
+            <a href="javascript:;" class="ani_btn">bounce-in</a>
+        </div>
+        <div class="ani_box">
+            <div class="inner back"><img src="images/emo_smile.png" class="margin_cnt expand-open"></div>
+            <a href="javascript:;" class="ani_btn">expand-open</a>
+        </div>
+        <div class="ani_box">
+            <div class="inner back"><img src="images/emo_smile.png" class="margin_cnt bounce"></div>
+            <a href="javascript:;" class="ani_btn">bounce</a>
+        </div>
+        <div class="ani_box">
+            <div class="inner back"><img src="images/emo_smile.png" class="margin_cnt pull-up"></div>
+            <a href="javascript:;" class="ani_btn">pull-up</a>
+        </div>
+        <div class="ani_box">
+            <div class="inner back"><img src="images/emo_smile.png" class="margin_cnt pull-down"></div>
+            <a href="javascript:;" class="ani_btn">pull-down</a>
+        </div>
+
+
+        <div class="ani_box">
+            <div class="inner back"><img src="images/emo_smile.png" class="margin_cnt heartbeat"></div>
+            <a href="javascript:;" class="ani_btn">heartbeat</a>
+        </div>
+        <div class="ani_box">
+            <div class="inner back"><img src="images/emo_smile.png" class="margin_cnt floating"></div>
+            <a href="javascript:;" class="ani_btn">floating</a>
+        </div>
+        <div class="ani_box">
+            <div class="inner back"><img src="images/emo_smile.png" class="margin_cnt tossing"></div>
+            <a href="javascript:;" class="ani_btn">tossing</a>
+        </div>        
+        <div class="ani_box">
+            <div class="inner back"><div class="margin_cnt blink"></div></div>
+            <a href="javascript:;" class="ani_btn">blink</a>
+        </div>
+        <div class="ani_box">
+            <div class="inner back"><img src="images/emo_smile.png" class="abs_cnt circle"></div>
+            <a href="javascript:;" class="ani_btn">circle</a>
+        </div>    
+
+
+        <!-- // Hover Animations -->
+        <!--
+        <li class="ani_box"><a class="grow">grow</a></li>
+        <li class="ani_box"><a class="float">float</a></li>
+        <li class="ani_box"><a class="sink">sink</a></li>
+        <li class="ani_box"><a class="pulse">pulse</a></li>
+        <li class="ani_box"><a class="wobbleH">wobbleH</a></li>
+        <li class="ani_box"><a class="wobbleV">wobbleV</a></li>
+        -->
+
+        <!-- // Icon Animations -->
+        <!--
+        <li class="ani_box"><a class="icon-forward">icon-forward<i class="icon-arrow"><img src="./images/arrow_left.png"></i></a></li>
+        <li class="ani_box"><a class="icon-wobbleH">icon-wobbleH<i class="icon-arrow"><img src="./images/arrow_left.png"></i></a></li>
+        -->
+
+        <!-- // Shadow Animations -->
+        <!--
+        <li class="ani_box"><a class="shadow">shadow</a></li>
+        <li class="ani_box"><a class="grow-shadow">grow-shadow</a></li>
+        <li class="ani_box"><a class="float-shadow">float-shadow</a></li>
+        -->
+    </div>
+
+    <script>
+        $('.ani_btn').on('click', function(){
+            $(this).siblings().children('img').addClass('on');
+            setTimeout(function(){
+                $('.inner img').removeClass('on');
+            },1000);
+        })
+    </script>
+</body>
+</html>
