@@ -64,6 +64,7 @@
         * zoom-in, slide-up, slide-down, slide-left, slide-right, 
         * bounce-in, expand-open, bounce, pull-up, pull-down, 
         * heartbeat, floating, tossing, blink, circle
+        * go-straight,
         */        
 
         .zoom-in.on {animation:zoom-in .6s ease-in-out;}
@@ -202,6 +203,12 @@
         @keyframes circle { 100% {transform:translate(-50%, -50%) rotate(360deg);} }
 
 
+        .go-straight {position:absolute; top:50%; margin-top:-100px; animation:go-straight 5s linear infinite;}
+
+        @keyframes go-straight {
+            0% {transform:translateX(-100%);}
+            100% {transform:translateX(200%);}
+        }
         
         /**
         * Hover animations:
@@ -372,6 +379,13 @@
         <div class="ani_box">
             <div class="inner back"><img src="images/emo_smile.png" class="abs_cnt circle"></div>
             <a href="javascript:;" class="ani_btn">circle</a>
+        </div>    
+
+
+        
+        <div class="ani_box">
+            <div class="inner back"><img src="images/emo_smile.png" class="go-straight"></div>
+            <a href="javascript:;" class="ani_btn">go-straight</a>
         </div>    
 
 
