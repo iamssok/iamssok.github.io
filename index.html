@@ -9,9 +9,9 @@
         * {margin:0; padding:0; font-family:'Pretendard',sans-serif;}
         ul {list-style:none;}
         input {outline:none;}
-        #clock {position:absolute; left:100px; bottom:180px; font-weight:400; font-size:140px; color:#fff; letter-spacing:-4px;}
+        #clock {position:absolute; left:100px; bottom:160px; font-weight:400; font-size:140px; color:#fff; letter-spacing:-4px;}
         #clock  span {position:relative; top:-12px; margin:0 -18px;}
-        #calendar {position:absolute; left:100px; bottom:130px; font-family:'Pretendard',sans-serif; font-weight:400; font-size:50px; color:#fff; letter-spacing:-2px;}
+        #calendar {position:absolute; left:100px; bottom:110px; font-family:'Pretendard',sans-serif; font-weight:400; font-size:50px; color:#fff; letter-spacing:-2px;}
         #loginForm {display:flex; flex-direction:column; justify-content:center; align-items:center; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:400px; height:200px; background:rgba(0,0,0,.3); border-radius:20px;}
         #loginInput {display:block; width:300px; height:45px; margin:4px 0; padding:0 15px; border:0; font-size:16px; box-sizing:border-box;}
         #loginButton {display:block; width:300px; height:45px; margin:4px 0; border:0; font-weight:700; font-size:18px; cursor:pointer;}
@@ -24,16 +24,11 @@
         #todoList li span {font-weight:400; font-size:16px; color:#fff;}
         #todoList li button {position:absolute; right:50px; background:none; border:0; cursor:pointer;}
         .hidden {display:none !important;}
-        #weather {margin:50px;}
-        #weather p {font-size:15px; color:#fff;}
+        #weather {position:absolute; bottom:40px; right:40px; text-align:right;}
+        #weather p {margin:5px 0; font-size:18px; color:#fff;}
     </style>
 </head>
 <body>
-    <div id="weather">
-        <p></p>
-        <p></p>
-    </div>
-
     <div id="clock"></div>
     <div id="calendar"></div>
 
@@ -47,6 +42,11 @@
         <input type="text" id="todoInput" placeholder="Write a To Do and Press Enter" required />
         <input type="submit" id="todoButton" value="Enter" />
         <ul id="todoList"></ul>
+
+        <div id="weather">
+            <p></p>
+            <p></p>
+        </div>
     </form>
     
     <script>
