@@ -3,7 +3,12 @@ const loginInput = document.querySelector("#loginInput");
 const greeting = document.querySelector("#greeting");
 const todoForm = document.querySelector("#todoForm");
 const todoInput = document.querySelector("#todoInput");
-const todoList = document.getElementById("todoList");
+const todoList = document.querySelector("#todoList");
+let toDos = [];
+
+function saveToDos() {
+    localStorage.setItem("toDos", JSON.stringify(toDos));
+}
 
 function login(e) {            
     e.preventDefault();
@@ -17,13 +22,16 @@ loginForm.addEventListener("submit", login);
 function deleteToDo(e) {
     const li = e.target.parentElement;
     li.remove();
+    toDos = toDos.filter((toDo) => toDo.id !== parseInt(li.id));
+    saveToDos();
 }
 
 function paintToDo(newTodo) {
     const li = document.createElement("li");
+    li.id = newTodo.id;
     const span = document.createElement("span");
     const button = document.createElement("button");
-    span.innerText = newTodo;
+    span.innerText = newTodo.text;
     button.innerText = "❌";
     button.addEventListener("click", deleteToDo);
     todoList.appendChild(li);
@@ -35,9 +43,23 @@ function todoSubmit(e) {
     e.preventDefault();
     const newTodo = todoInput.value;
     todoInput.value = "";
-    paintToDo(newTodo);
+    const newToDoObj = {
+        text: newTodo,
+        id: Date.now(),
+    }
+    toDos.push(newToDoObj);
+    paintToDo(newToDoObj);
+    saveToDos();
 }
 todoForm.addEventListener("submit", todoSubmit);
+
+const savedToDos = localStorage.getItem("toDos");
+
+if (savedToDos) {
+    const parsedToDos = JSON.parse(savedToDos);
+    toDos = parsedToDos;
+    parsedToDos.forEach(paintToDo);
+}
 
 const imgs = ["back1","back2","back3","back4","back5","back6","back7","back8"];
 const dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
