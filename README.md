@@ -22,13 +22,4 @@
 ## Stack
 - [x] HTML5
 - [x] CSS3
-- [ ] SCSS
 - [x] JavaScript
-- [ ] jQuery
-- [ ] React
-- [ ] TypeScript
-- [ ] TanStack Query (React Query)
-- [ ] Recoil
-- [ ] Styled-Components
-- [ ] Bootstrap
-- [ ] ChatGPT
